@@ -1,0 +1,11 @@
+hard_tabs = false
+max_width = 80
+chain_width = 20
+tab_spaces = 2
+force_multiline_blocks = true
+fn_call_width = 20
+brace_style = "PreferSameLine"
+fn_args_layout = "Vertical"
+imports_layout = "Vertical"
+imports_granularity = "Crate"
+group_imports = "StdExternalCrate"
