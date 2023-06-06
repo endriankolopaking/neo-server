@@ -1,0 +1,7 @@
+/target
+/database
+.git
+.gitignore
+rustfmt.toml
+.Dockerignore
+Dockerfile
