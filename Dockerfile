@@ -16,17 +16,17 @@ USER root
 ARG APP=/usr/src/app
 
 RUN apt-get update \
-    && apt-get install -y ca-certificates tzdata sqlite3\
-    && rm -rf /var/lib/apt/lists/*
+  && apt-get install -y ca-certificates tzdata sqlite3\
+  && rm -rf /var/lib/apt/lists/*
 
 EXPOSE 8000
 
 ENV TZ=Etc/UTC \
-    APP_USER=appuser
+  APP_USER=appuser
 
 RUN groupadd $APP_USER \
-    && useradd -g $APP_USER $APP_USER \
-    && mkdir -p ${APP}
+  && useradd -g $APP_USER $APP_USER \
+  && mkdir -p ${APP}
 
 COPY --from=builder /neo-server/target/release/neo-server ${APP}/neo-server
 RUN mkdir ${APP}/database

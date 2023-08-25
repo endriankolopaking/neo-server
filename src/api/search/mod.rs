@@ -1,3 +1,4 @@
+mod logger;
 mod query;
 
 use std::sync::{Arc, Mutex};
@@ -16,9 +17,13 @@ pub fn api(
       move |data: serde_json::Value| {
         let mut results: Vec<serde_json::Value> = Vec::new();
 
+        let _ = logger::to_file(
+          "database/last-query.txt",
+          &data,
+        );
+
         if let serde_json::Value::Object(obj) = data {
           let query = query::generate(obj);
-          // println!("{}", query);
 
           let db = db
             .lock()
