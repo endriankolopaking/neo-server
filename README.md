@@ -137,13 +137,15 @@ const schemaDB: PropertiesSchema = {
 
 ## Docker setup:
 
+There is already a docker prebuilt at huy2840/neo-server if you just want to pull directly and test it out.
+
 - build command 
   ```shell
-  docker build -t huy2840/neo-server .
+  docker build -t docker-name .
   ```
 - run command
   ```shell
-  docker run -it --rm -d -p 8000:8000 huy2840/neo-server
+  docker run -it --rm -d -p 8000:8000 docker-name
   ```
 - attach to docker for inspection 
   ```shell
@@ -157,14 +159,14 @@ Replace the image name above to your own image name.
 ```bash
 #!/bin/bash
 
-docker stop $(docker ps -a -q --filter ancestor=huy2840/neo-server --format="{{.ID}}")
-docker run -it --rm -d -p 8000:8000 huy2840/neo-server
+docker stop $(docker ps -a -q --filter ancestor=docker-name --format="{{.ID}}")
+docker run -it --rm -d -p 8000:8000 docker-name
 
 echo "Restart server at:" >> cron-log.txt
 TZ='Asia/Singapore' date >> cron-log.txt
 ```
 
-if you intend to build and push your own docker container server, remember to change the `ancestor=huy2840/neo-server` to your own container-image-name.
+if you intend to build and push your own docker container server, remember to change the `ancestor=docker-name` to your own container-image-name.
 
 ## cron task schedule:
 ```bash
